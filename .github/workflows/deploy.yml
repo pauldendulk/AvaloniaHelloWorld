@@ -24,7 +24,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.x
+          global-json-file: AvaloniaHelloWorld/global.json
 
       - name: Verify .NET SDK
         working-directory: AvaloniaHelloWorld
@@ -36,13 +36,9 @@ jobs:
         working-directory: AvaloniaHelloWorld
         run: dotnet workload install wasm-tools
 
-      - name: Restore workloads
+      - name: Restore (Browser only)
         working-directory: AvaloniaHelloWorld
-        run: dotnet workload restore
-
-      - name: Restore
-        working-directory: AvaloniaHelloWorld
-        run: dotnet restore ./AvaloniaHelloWorld.sln
+        run: dotnet restore ./AvaloniaHelloWorld.Browser/AvaloniaHelloWorld.Browser.csproj
 
       - name: Publish (Browser)
         working-directory: AvaloniaHelloWorld
