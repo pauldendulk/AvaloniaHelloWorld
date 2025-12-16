@@ -26,6 +26,16 @@ jobs:
         with:
           dotnet-version: 9.0.x
 
+      - name: Verify .NET SDK
+        working-directory: AvaloniaHelloWorld
+        run: |
+          dotnet --version
+          dotnet --info
+
+      - name: Install WASM workload
+        working-directory: AvaloniaHelloWorld
+        run: dotnet workload install wasm-tools
+
       - name: Restore workloads
         working-directory: AvaloniaHelloWorld
         run: dotnet workload restore
